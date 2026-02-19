@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Hide scrollbar completely */
+.no-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE + Edge */
+  scrollbar-width: none;     /* Firefox */
+}
