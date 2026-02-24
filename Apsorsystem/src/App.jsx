@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter } from 'react-router'
 import Navigation from './Components/Layout/Navigation'
 import Homepage from './Components/Pages/Public/Homepage'
+import Footer from './Components/Pages/Public/Footer/footer.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +28,9 @@ function App() {
   </div>
 
 </div>
+   <div className=" ">
+    <Footer />
+  </div>
 
 
 

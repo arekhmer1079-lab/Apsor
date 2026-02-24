@@ -4,6 +4,7 @@ import Categories from "./Categories/Categories.jsx";
 
 
 
+
 export default function Homepage() {
   const sliderRef = useRef(null);
 
@@ -202,7 +203,8 @@ export default function Homepage() {
         <Categories />
       </div>
       
-   
+
+          
       </div>
       
 

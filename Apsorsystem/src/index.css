@@ -19,3 +19,7 @@
   -ms-overflow-style: none;  /* IE + Edge */
   scrollbar-width: none;     /* Firefox */
 }
+
+footer a {
+  text-decoration: none;
+}

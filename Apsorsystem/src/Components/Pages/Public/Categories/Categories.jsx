@@ -7,6 +7,7 @@ export default function Categories() {
   const [activeTab, setActiveTab] = useState("Location");
   const [selectedCategory, setSelectedCategory] = useState("Electronics");
   const scrollerRef = useRef(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 const leftCategories = [
   "Electronics", 
   "Furniture", 
@@ -39,6 +40,38 @@ const leftCategories = [
   "Printing & Publishing"
 ];
  const subCategories = {
+  "Electronics": [
+    "Laptops", "Phones", "Tablets", "PC Parts", "Accessories", "Repair Service"
+  ],
+
+  "Furniture": [
+    "Tables", "Chairs", "Sofas", "Beds", "Cabinets", "Wardrobes"
+  ],
+
+  "Vehicles": [
+    "Cars", "Motorcycles", "Bicycles", "Parts", "Repair", "Rental"
+  ],
+
+  "Real Estate": [
+    "House for Sale", "House for Rent", "Land", "Commercial", "Real Estate Services"
+  ],
+
+  "Fashion": [
+    "Men Clothing", "Women Clothing", "Shoes", "Bags", "Accessories"
+  ],
+
+  "Sports": [
+    "Gym Equipment", "Football Gear", "Swimming Gear", "Outdoor Sport"
+  ],
+
+  "Books": [
+    "Education", "Novels", "Comics", "Children Books"
+  ],
+
+  "Toys": [
+    "Learning Toys", "Electric Toys", "Dolls", "Outdoor Toys"
+  ],
+
   "Accounting": [
     "Bookkeeping",
     "Accounts payable / receivable",
@@ -55,53 +88,113 @@ const leftCategories = [
   ],
 
   "Financial Services": [
-    "Personal financial planning",
-    "Budget coaching",
-    "Loan support",
-    "Credit consultation",
-    "Investment advisory",
-    "Insurance brokerage",
-    "Money transfer",
-    "POS onboarding",
-    "Wealth planning",
-    "Business finance",
-    "Valuation / due diligence"
+    "Financial planning", "Budget coaching", "Loan support",
+    "Credit consulting", "Investment advisory", "Money transfer",
+    "POS onboarding", "Business finance"
   ],
 
   "Travel & Tourism": [
-    "Tour packages",
-    "Private driver",
-    "Airport pickup",
-    "Ticket booking",
-    "Hotel booking",
-    "Itinerary planning",
-    "Tour guide",
-    "Visa assistance",
-    "Travel photography",
-    "Adventure booking",
-    "Group tours"
+    "Tour packages", "Private driver", "Airport pickup",
+    "Ticket booking", "Hotel booking", "Visa assistance",
+    "Photography", "Adventure booking"
   ],
 
   "Automotive": [
-    "Car wash",
-    "Car detailing",
-    "Oil & filter",
-    "Engine diagnostics",
-    "Battery replace",
-    "Tire service",
-    "Brake service",
-    "AC service",
-    "Suspension repair",
-    "Electrical repair",
-    "Body repair",
-    "Glass repair",
-    "Vehicle inspection",
-    "Motorbike services",
-    "Vehicle rental"
+    "Car wash", "Detailing", "Oil change", "Engine diagnostics",
+    "Tire service", "Brake service", "AC service", "Electrical repair",
+    "Vehicle inspection", "Motorbike services", "Rental"
   ],
 
-  
+  "Advertising & Media": [
+    "Branding", "Graphic design", "Photography", "Videography",
+    "Video editing", "Copywriting", "SEO", "Ads management"
+  ],
+
+  "Bridal Services": [
+    "Makeup", "Hair styling", "Dress rental", "Wedding photography",
+    "Wedding videography", "Wedding decoration", "Wedding planning"
+  ],
+
+  "Cleaning & Maid Services": [
+    "Regular cleaning", "Deep cleaning", "Move-in cleaning",
+    "Sofa cleaning", "Mattress cleaning", "Curtain cleaning",
+    "Laundry", "Pest control"
+  ],
+
+  "Construction, Arch. & Interiors": [
+    "Renovation", "Architecture design", "Painting",
+    "Flooring", "Ceiling", "Carpentry", "Project management"
+  ],
+
+  "Education & Training": [
+    "Tutoring", "Language courses", "Programming", "Graphic design",
+    "Business training", "Soft skills"
+  ],
+
+  "Engineering": [
+    "Civil Engineering", "MEP", "Electrical Design", "Mechanical Design",
+    "Site Inspection", "Project Engineering"
+  ],
+
+  "Insurance": [
+    "Life insurance", "Motor insurance", "Property insurance",
+    "Health insurance", "Claims assistance"
+  ],
+
+  "Massage & Spa": [
+    "Khmer massage", "Oil massage", "Foot massage",
+    "Facial treatment", "Body scrub", "Sauna"
+  ],
+
+  "Health, Medical & Pharma": [
+    "Clinic consult", "Lab tests", "Dental care", "Eye care",
+    "Pharmacy delivery", "Home nursing"
+  ],
+
+  "IT & Telecom": [
+    "Phone repair", "Laptop repair", "Software install",
+    "Data recovery", "Network setup", "CCTV install",
+    "Web development", "App development"
+  ],
+
+  "Interior Design & Renovation": [
+    "Interior design", "3D render", "Furniture selection",
+    "Kitchen design", "Curtains", "Lighting"
+  ],
+
+  "Legal": [
+    "Contract drafting", "Notary support", "Trademark",
+    "Visa & work permit", "Legal consulting"
+  ],
+
+  "Movers & Logistics": [
+    "Home moving", "Office moving", "Packing", "Delivery",
+    "Truck rental", "Storage"
+  ],
+
+  "Plumbing & Electrical": [
+    "Leak repair", "Drain unclog", "Water heater install",
+    "Light install", "Socket repair", "Rewiring"
+  ],
+
+  "Science": [
+    "Water testing", "Soil testing", "Food testing",
+    "Environmental testing", "Lab services"
+  ],
+
+  "Supply Chain & Logistics": [
+    "Warehousing", "Inventory Mgmt", "Order fulfillment",
+    "Freight forwarding", "Customs clearance"
+  ],
+
+  "Printing & Publishing": [
+    "Business cards", "Flyers", "Posters", "Banners",
+    "Stickers", "Packaging printing"
+  ]
 };
+
+  
+
 
 
   const items = useMemo(
@@ -114,30 +207,46 @@ const leftCategories = [
         descripion: "Apple M3 Chip",
         status: "available",
         category: "Electronics",
+        subCategories: "Laptops"
+       
+        
       },
       {
-        image: "https://www.sunconengineers.com/wp-content/uploads/2022/10/Construction-Project-Management-Companies-900x400.jpg",
+        image: "https://www.advancedtech.com/wp-content/uploads/2024/08/Industrial-Repair-Services_1920x900.jpg",
         price: "$2,499",
-        title: "Engineering",
+        title: "Repair Service for Electronics",
         location: "Battambang romcheck3 rothanak",
         descripion: "45MP Full‑Frame",
         status: "available",
         category: "Electronics",
+        subCategories: "Repair Service"
+        
       },
       {
-        image: "https://www.safes.so/wp-content/uploads/2023/02/how-many-toys-should-a-child-have-1024x512.webp",
+        image: "https://static.fibre2fashion.com//articleresources/images/71/7074/SAdobeStock_247321133_Small.jpg",
         price: "$1.50",
-        title: "Toy for children",
+        title: "Accessories ",
         location: "Battambang",
         descripion: "hong kong toy",
         status: "unavailable",
-        category: "Toys",
+        category: "Electronics",
+        subCategories: "Accessories"
+        
       },
     ],
     []
   );
+   const filtered = items.filter((it) => {
+  if (it.category !== selectedCategory) return false;
 
-     const filtered = items.filter((it) => it.category === selectedCategory);
+  if (selectedSubCategory) {
+    return it.subCategories && it.subCategories.includes(selectedSubCategory);
+  }
+
+  return true;
+});
+
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-6">
@@ -172,44 +281,41 @@ const leftCategories = [
         </aside>
 
         {/* RIGHT: Menubar + Cards */}
-        <div className="col-span-12 md:col-span-9">
-          
-                <Menubar
-        tabs={
-          subCategories[selectedCategory] && subCategories[selectedCategory].length > 0
-            ? subCategories[selectedCategory]
-            : ["Bookkeeping", "Account Payable", "Account Receivable", "Payroll Services", "Tax Filing", "Financial Statements", "Budgeting", "Audit Support", "Company Setup", "Inventory Accounting", "Cost Accounting", "CFO Advisory", "Forensic Accounting"]
-        }
-        active={activeTab}
-        onChange={setActiveTab}
-      />
-          
-          
-          
-          
-          
-
+        {/* RIGHT: Menubar + Cards */}
+          <div className="col-span-12 md:col-span-9">
+      
+        {/* SCROLL WRAPPER FIX */}
+            <div className="w-full overflow-x-auto no-scrollbar">
+            
+               <Menubar
+                 tabs={subCategories[selectedCategory] || []}
+                 active={selectedSubCategory}
+                 onChange={setSelectedSubCategory}
+               />
+                 
+          </div>
+              
           {/* Mobile: touch scroll horizontally */}
-          <div
-            ref={scrollerRef}
-            className="md:hidden mt-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
-            style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
-          >
-            {filtered.map((item, idx) => (
-              <div key={idx} className="snap-start shrink-0 w-72">
-                <ItemCard {...item} />
+              <div
+                ref={scrollerRef}
+                className="md:hidden mt-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
+                style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
+              >
+                {filtered.map((item, idx) => (
+                  <div key={idx} className="snap-start shrink-0 w-72">
+                    <ItemCard {...item} />
+                  </div>
+                ))}
               </div>
-            ))}
+     
+              {/* Desktop: grid 3 cols */}
+              <div className="hidden md:grid md:grid-cols-3 gap-6 mt-6">
+                {filtered.map((item, idx) => (
+                  <ItemCard key={idx} {...item} />
+                ))}
+              </div>
+            </div>
           </div>
-
-          {/* Desktop: grid 3 cols */}
-          <div className="hidden md:grid md:grid-cols-3 gap-6 mt-6">
-            {filtered.map((item, idx) => (
-              <ItemCard key={idx} {...item} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
   );
 }
