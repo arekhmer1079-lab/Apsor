@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Categories from "./Categories/Categories.jsx";
+import Footer from "./Footer/footer.jsx";
 
 
 
@@ -129,7 +130,8 @@ export default function Homepage() {
     images[Math.floor(Math.random() * images.length)] + "?w=800&auto=format";
 
   return (
-    <div className="min-h-screen bg-white pt-6">
+    <div className="min-h-screen bg-white pt-30">
+      <h1 className="text-3xl font-bold text-center flex justify-center mt-10">Welcome to Apsor</h1>
 
       {/* Banner */}
       <div className="max-w-7xl mx-auto px-4">
@@ -199,16 +201,12 @@ export default function Homepage() {
 
         </div>
       </div>
+
       <div className="min-h-screen bg-white">
         <Categories />
       </div>
-      
 
-          
-      </div>
-      
-
-
-
+      <Footer />
+    </div>
   );
 }

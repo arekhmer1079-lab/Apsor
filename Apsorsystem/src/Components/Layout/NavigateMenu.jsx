@@ -1,37 +1,32 @@
 import React, { useState } from 'react';
-import { Icon } from '@iconify/react'
-import { Link } from 'react-router-dom'
-import { ShoppingCart, Package, Upload, User } from 'lucide-react'
-import Profile from '../Pages/Public/proflie/profile'
+import { Link, useNavigate } from 'react-router-dom';
+import { ShoppingCart, Package, Upload, User } from 'lucide-react';
+import Profile from '../Pages/Public/proflie/profile';
 
 export default function NavigateMenu({ MenuOpen, toggleMenu }) {
-  const cartItems = 3
-  const pendingOrders = 2
-   const [active, setActive] = useState("Home") 
+  const cartItems = 3;
+  const pendingOrders = 2;
+  const [active, setActive] = useState("Home");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
-  
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
-	
-    <div className='lg:flex hidden items-center gap-6 text-black font-medium'>
-      {/* //Menu Items */}
+    <div className='lg:flex hidden items-center gap-6 text-black font-medium '>
+      {/* Menu Items */}
       <div className={`flex items-center px-30 gap-10 text-black font-medium transition-all duration-300 ${MenuOpen ? 'block' : 'hidden'} lg:flex`}>
-
-      <Link to='Home' className={`hover:text-purple-500 transition-colors ${active === "Home" ? 'text-purple-500' : ''}`} onClick={() => setActive("Home")}>Home</Link>
-      <Link to='Explore' className={`hover:text-purple-500 transition-colors ${active === "Explore" ? 'text-purple-500' : ''}`} onClick={() => setActive("Explore")}>Explore</Link>
-      <Link to='About' className={`hover:text-purple-500 transition-colors ${active === "About" ? 'text-purple-500' : ''}`} onClick={() => setActive("About")}>About</Link>
-      <Link to='Contact' className={`hover:text-purple-500 transition-colors ${active === "Contact" ? 'text-purple-500' : ''}`} onClick={() => setActive("Contact")}>Contact</Link>
-
+        <Link to="/" className={`hover:text-purple-500 transition-colors ${active === "Home" ? 'text-purple-500' : ''}`} onClick={() => setActive("Home")}>Home</Link>
+        <Link to="/explore" className={`hover:text-purple-500 transition-colors ${active === "Explore" ? 'text-purple-500' : ''}`} onClick={() => setActive("Explore")}>Explore</Link>
+        <Link to="/about" className={`hover:text-purple-500 transition-colors ${active === "About" ? 'text-purple-500' : ''}`} onClick={() => setActive("About")}>About</Link>
+        <Link to="/contact" className={`hover:text-purple-500 transition-colors ${active === "Contact" ? 'text-purple-500' : ''}`} onClick={() => setActive("Contact")}>Contact</Link>
       </div>
-  
-  
-
 
       {/* Cart */}
       <div className="relative group">
-        <button 
-          className="flex flex-col items-center gap-1 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-        >
+        <button className="flex flex-col items-center gap-1 p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <div className="relative">
             <ShoppingCart className="size-5 text-gray-700" />
             {cartItems > 0 && (
@@ -49,21 +44,19 @@ export default function NavigateMenu({ MenuOpen, toggleMenu }) {
             <p className="text-sm text-gray-500">{cartItems} items</p>
           </div>
           <div className="py-2">
-            <div className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+            <button onClick={() => handleNavigation('/cart')} className="w-full px-4 py-3 hover:bg-gray-50 cursor-pointer text-left">
               <p className="text-sm font-medium">View Cart</p>
-            </div>
-            <div className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+            </button>
+            <button onClick={() => handleNavigation('/checkout')} className="w-full px-4 py-3 hover:bg-gray-50 cursor-pointer text-left">
               <p className="text-sm font-medium">Checkout</p>
-            </div>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Orders */}
       <div className="relative group">
-        <button 
-          className="flex flex-col items-center gap-1 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-        >
+        <button className="flex flex-col items-center gap-1 p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <div className="relative">
             <Package className="size-5 text-gray-700" />
             {pendingOrders > 0 && (
@@ -81,18 +74,18 @@ export default function NavigateMenu({ MenuOpen, toggleMenu }) {
             <p className="text-sm text-gray-500">{pendingOrders} pending</p>
           </div>
           <div className="py-2">
-            <div className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+            <button onClick={() => handleNavigation('/orders')} className="w-full px-4 py-3 hover:bg-gray-50 cursor-pointer text-left">
               <p className="text-sm font-medium">Track Orders</p>
-            </div>
-            <div className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+            </button>
+            <button onClick={() => handleNavigation('/order-history')} className="w-full px-4 py-3 hover:bg-gray-50 cursor-pointer text-left">
               <p className="text-sm font-medium">Order History</p>
-            </div>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Post Button */}
-      <button className="bg-linear-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 group">
+      <button onClick={() => handleNavigation('/post')} className="bg-linear-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 group">
         <Upload className="size-4 group-hover:scale-110 transition-transform" />
         <span>Post</span>
       </button>
@@ -101,7 +94,7 @@ export default function NavigateMenu({ MenuOpen, toggleMenu }) {
       <div className="relative group">
         <button className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <img 
-            src="https://pbs.twimg.com/profile_images/1062309265652609024/m8dTSdZc_400x400.jpg" 
+            src="https://yt3.googleusercontent.com/rp1eL5jdrjYTMyK45N0dcHRHZ_vHgTm78cgOdb2_DL5t24JJ5YB2BDd7vHoIEpqUsrarHbT-fw=s900-c-k-c0x00ffffff-no-rj-v1" 
             alt="Profile"
             className="w-8 h-8 rounded-full"
           />
@@ -112,9 +105,9 @@ export default function NavigateMenu({ MenuOpen, toggleMenu }) {
         </button>
 
         <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-          <Profile />
+          <Profile setShowDropdown={setShowDropdown} />
         </div>
       </div>
     </div>
-  )
+  );
 }

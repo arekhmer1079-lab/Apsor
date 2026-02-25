@@ -1,45 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter } from 'react-router'
-import Navigation from './Components/Layout/Navigation'
-import Homepage from './Components/Pages/Public/Homepage'
-import Footer from './Components/Pages/Public/Footer/footer.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './Components/Layout/Navigation';
+import Homepage from './Components/Pages/Public/Homepage';
+import Userprofile from './Components/Pages/Public/proflie/Userprofile';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <BrowserRouter>
-    <div className="min-h-screen flex flex-col">
-
-  {/* Navigation Bar */}
-  <div className="w-full fixed top-0 left-0 z-30">
-    <Navigation />
-  </div>
-
-  {/* Page Content */}
-  <div className="pt-24"> {/* space for fixed navbar */}
-    <div className="max-w-7xl mx-auto w-full px-4">
-      <Homepage />   {/* your page content */}
-    </div>
-  </div>
-
-</div>
-   <div className=" ">
-    <Footer />
-  </div>
-
-
-
-   
-      
-      
-    </BrowserRouter>
-    </>
-  )
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Homepage className="bg-gray-100 mt-40" />} />
+        <Route path="/userprofile" element={<Userprofile />} />
+        {/* Add other routes as needed */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
